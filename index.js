@@ -19,7 +19,7 @@ const unless = require("express-unless");
  */
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(dbConfig.db, {
+  .connect(dbConfig.db||"process.env.MOONGOOSE_PATH", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
