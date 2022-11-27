@@ -6,6 +6,7 @@ const UserSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   email: {
     type: String,
@@ -41,7 +42,10 @@ UserSchema.set("toJSON", {
  * 1. The userSchema.plugin(uniqueValidator) method won’t let duplicate email id to be stored in the database.
  * 2. The unique: true property in email schema does the internal optimization to enhance the performance.
  */
-UserSchema.plugin(uniqueValidator, { message: "Email already in use." });
+
+UserSchema.plugin(uniqueValidator, {
+  message: "Email already in use." 
+});
 
 const User = mongoose.model("user", UserSchema);
 module.exports = User;

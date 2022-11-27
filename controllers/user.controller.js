@@ -7,14 +7,17 @@ const userServices = require("../services/user.services");
  * 3. In the SignIn API, we set the JWT token expiration time. Token will be expired within the defined duration.
  */
 exports.register = (req, res, next) => {
+  console.log(req.body)
   const { password } = req.body;
-
+  console.log(req.body)
   const salt = bcrypt.genSaltSync(10);
 
   req.body.password = bcrypt.hashSync(password, salt);
 
   userServices.register(req.body, (error, results) => {
+    console.log(req.body)
     if (error) {
+      console.log(error)
       return next(error);
     }
     return res.status(200).send({
@@ -39,7 +42,7 @@ exports.login = (req, res, next) => {
 };
 
 exports.userProfile = (req, res, next) => {
-  return res.status(401).json({ message: "Authorized User!!" });
+  return res.status(200).json({ message: "Authorized User!!" });
 };
 
 
