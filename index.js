@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dbConfig = require("./config/db.config");
+require('dotenv').config();
 
 const auth = require("./middlewares/auth.js");
 const errors = require("./middlewares/errors.js");
@@ -22,7 +23,6 @@ mongoose
   .connect(process.env.ATLAS_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex:true
   })
   .then(
     () => {
