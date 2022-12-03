@@ -19,7 +19,6 @@ const unless = require("express-unless");
  * A heartbeat is subject to serverSelectionTimeoutMS , so the MongoDB driver will retry failed heartbeats for up to 30 seconds by default.
  */
 mongoose.Promise = global.Promise;
-
 mongoose
   .connect(process.env.ATLAS_URI, {
     useNewUrlParser: true,
